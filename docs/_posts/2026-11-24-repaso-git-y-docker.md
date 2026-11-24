@@ -4,7 +4,7 @@ title: "Repaso Comandos Git y Docker"
 ---
 En clase usamos Git para guardar versiones del proyecto, GitHub para revisar y compartir los cambios y Docker Compose para probar el blog de Jekyll en local.
 
-1. Empezar un repositorio
+## 1. Empezar un repositorio
 
 Si empiezo con una carpeta nueva, abro Git Bash dentro de ella. Con estos comandos preparo el primer archivo y guardo su primera versión. Sustituyo el nombre y el correo por los que quiero que aparezcan en mis commits.
 
@@ -37,7 +37,7 @@ git clone https://github.com/TU-USUARIO/gitpr-iaw.git
 cd gitpr-iaw
 git status
 
-2. Revisar cambios y elegir qué entra en el commit
+## 2. Revisar cambios y elegir qué entra en el commit
 
 Comando
 
@@ -89,19 +89,19 @@ Ver el historial resumido en una línea por commit.
 
 Los apuntes también mencionan git stash. Sirve para guardar temporalmente cambios en archivos en seguimiento si necesito cambiar de tarea. Con git stash pop puedo recuperarlos.
 
-3. Trabajar con ramas y resolver un conflicto
+## 3. Trabajar con ramas y resolver un conflicto
 
 En el ejercicio, dos ramas modifican la misma línea del README. Creo ambas desde main para que cada una tenga su propia versión del cambio.
 
 git branch
 git switch -c rama-uno
-# Edito la línea 2 de README.md y guardo el archivo.
+### Edito la línea 2 de README.md y guardo el archivo.
 git add README.md
 git commit -m "cambios rama-uno"
 
 git switch main
 git switch -c rama-dos
-# Escribo algo distinto en la misma línea y guardo.
+### Escribo algo distinto en la misma línea y guardo.
 git add README.md
 git commit -m "cambios de rama dos"
 
@@ -117,12 +117,12 @@ git add README.md
 git commit -m "Resuelve el conflicto en README"
 git status
 
-4. Proponer una mejora con una pull request
+## 4. Proponer una mejora con una pull request
 
 Desde main, creo una rama, modifico el README y envío la propuesta a GitHub. También puedo crear esa rama con git checkout -b mejora-readme.
 
 git switch -c mejora-readme
-# Edito README.md y guardo los cambios.
+### Edito README.md y guardo los cambios.
 git diff
 git add README.md
 git commit -m "cambios realizados en el archivo"
@@ -134,7 +134,7 @@ En GitHub abro una pull request desde mejora-readme hacia main. Si me piden una 
 git switch main
 git pull
 
-5. Arrancar y comprobar el blog con Docker Compose
+## 5. Arrancar y comprobar el blog con Docker Compose
 
 Primero creo la carpeta de trabajo y entro en ella. Aquí guardo el archivo docker-compose.yml de la práctica. Si ya tengo el proyecto, abro su carpeta directamente.
 
@@ -191,11 +191,11 @@ exec bundle exec jekyll serve --host 0.0.0.0 --port 4000 \
 
 [ ! -f docs/Gemfile ] comprueba si falta el archivo de dependencias. En ese caso, gem install instala Jekyll 3.10.0 sin generar su documentación y jekyll ... new docs --skip-bundle crea el sitio dejando la instalación de dependencias para el siguiente paso.
 
-cd docs entra en el sitio. bundle check comprueba sus dependencias y || bundle install las instala si la comprobación falla.
+cd docs entra en el sitio. bundle check comprueba sus dependencias y  bundle install las instala si la comprobación falla.
 
 exec bundle exec jekyll serve arranca Jekyll con las versiones del proyecto como proceso principal del contenedor. Escucha en el puerto 4000. Las opciones --watch y --force_polling detectan cambios en los archivos, y --livereload actualiza el navegador mediante el puerto 35729.
 
-6. Comprobar y publicar esta entrada
+## 6. Comprobar y publicar esta entrada
 
 Para que Jekyll reconozca este archivo como entrada, lo guardo en docs/_posts/2026-11-24-repaso-git-y-docker.md, con el título y layout: post en la cabecera. Abro la portada local y compruebo que puedo entrar al repaso. Si el proyecto tiene configurado baseurl: /blog-iaw, uso la ruta local del blog.
 
